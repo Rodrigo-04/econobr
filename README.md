@@ -3,8 +3,6 @@
 Ecossistema de indicadores econômicos brasileiros (SELIC, IPCA, câmbio USD/BRL), construído
 como projeto de portfólio full stack: dados → API → consumo (web e mobile) → automação.
 
-> "Eu extraio o dado, eu sirvo o dado, eu entrego o dado num app, e eu automatizo tudo isso."
-
 ## Arquitetura
 
 ```
@@ -53,7 +51,3 @@ Pré-requisitos: Docker, .NET SDK, Python 3.11+, Node 18+.
 ```bash
 # em breve: instruções de setup completo (M1 em diante)
 ```
-
-## Licença
-
-Defina a licença do projeto aqui (ex.: MIT) quando estiver pronto para publicar.
