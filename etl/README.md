@@ -27,9 +27,27 @@ Iniciar venv:
 ```.\venv\Scripts\Activate.ps1```
 Instalar requisitos:
 ```pip install -r requirements.txt```
+    Obs: Sempre que atualizarmos os requisitos precisamos rodar essa instalação no ambiente virtual
 Desativar ambiente virtual:
 ```deactivate```
 
 ## Teste
-Rode o arquivo de teste
+Rode o teste pra a extração
 ```python extract.py```
+Rode o teste pra a transformação
+```python transform.py```
+Rode o teste pra a ambos
+```python teste_manual.py```
+
+## Armazenar no banco de dados SQL Server
+Previsamos garantir que windows possui ODBC
+```Get-OdbcDriver | Where-Object {$_.Name -like '*SQL Server*'}```
+Depedndo do retorno eciamos instala o ODBC para SQL Server, estou utilizando verão 18
+
+Quando finaziamos a criação do load.py e do main.py
+    load: abre conexão com o SQL Server
+    main: faz o ETL de fato executando os arquivos extract, transform e load
+Precisamos ativar o container Docker, como temos anotado no README da pasta infra, assim o banco de dados fica ativo.
+E então rodamos:
+```python main.py```
+Para executar o processo de ETL

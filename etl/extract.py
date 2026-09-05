@@ -53,7 +53,8 @@ def buscar_serie(nome_serie: str, data_inicial: date, data_final: date) -> list[
 
     return resposta.json()
 
-
+#reativar para rodar o arquivo como teste no terminal
+"""
 if __name__ == "__main__":
     # Teste manual: busca um período mais largo (400 dias) pra garantir que
     # séries mensais como o IPCA tenham pelo menos uma publicação na janela
@@ -65,3 +66,4 @@ if __name__ == "__main__":
         print(f"\n--- {nome.upper()} ({len(dados)} registros) ---")
         for linha in dados[:5]:  # mostra só os 5 primeiros, pra não poluir o terminal
             print(linha)
+"""

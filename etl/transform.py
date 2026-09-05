@@ -52,6 +52,8 @@ def transformar_serie(dados_brutos: list[dict]) -> pd.DataFrame:
 
 
     # Teste manual: encadeia extração + transformação
+    #reativar para rodar o arquivo como teste no terminal
+"""
 if __name__ == "__main__":
     from datetime import date, timedelta
     from extract import buscar_serie, SERIES
@@ -66,3 +68,4 @@ if __name__ == "__main__":
         print(f"Linhas brutas: {len(dados_brutos)} | Linhas válidas após transformação: {len(df)}")
         print(df.head())
         print(df.dtypes)
+"""

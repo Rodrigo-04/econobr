@@ -21,8 +21,12 @@ Para o container e pagar volume:
 
 Envia as informações do schema.sql para o banco de dados:
 ```Get-Content schema.sql | docker exec -i econobr-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ".env:SA_PASSWORD" -C -i /dev/stdin```
-Lista todas as tabelas que existem dentro do banco de dados:
+Listar todas as tabelas que existem dentro do banco de dados:
 ```docker exec -it econobr-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ".env:SA_PASSWORD" -C -Q "USE econobr; SELECT name FROM sys.tables ORDER BY name;"```
+Para listar o contúdo utilizamos:
+```docker exec -it econobr-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ".env:SA_PASSWORD" -C -Q "USE econobr; SELECT TOP 5 * FROM selic ORDER BY data DESC;"```
+Para listar a contagem das linhas de uma tabela:
+```docker exec -it econobr-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ".env:SA_PASSWORD" -C -Q "USE econobr; SELECT COUNT(*) AS total FROM cambio;"```
 
 ## Planejado
 - `docker-compose.yml` — SQL Server (M1), depois unificado com a API (M6)
