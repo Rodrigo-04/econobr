@@ -17,3 +17,19 @@ Status: **M2 — a implementar.**
 | SELIC (meta) | 432 |
 | IPCA (variação mensal) | 433 |
 | Câmbio USD/BRL (venda) | 1 |
+
+
+## Ambiente
+Vamos usar um ambiente virtual (venv)
+Criar pasta venv:
+```python -m venv venv```
+Iniciar venv:
+```.\venv\Scripts\Activate.ps1```
+Instalar requisitos:
+```pip install -r requirements.txt```
+Desativar ambiente virtual:
+```deactivate```
+
+## Teste
+Rode o arquivo de teste
+```python extract.py```

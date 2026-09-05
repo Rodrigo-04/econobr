@@ -1,7 +1,7 @@
 # econobr
 
-Ecossistema de indicadores econômicos brasileiros (SELIC, IPCA, câmbio USD/BRL), construído
-como projeto de portfólio full stack: dados → API → consumo (web e mobile) → automação.
+Ecossistema de indicadores econômicos brasileiros (SELIC, IPCA, câmbio USD/BRL), construído como projeto de portfólio full stack: dados → API → consumo (web e mobile) → automação.
+Uso de IApara acelerar o desenvolvimento.
 
 ## Arquitetura
 
@@ -27,7 +27,7 @@ API em ASP.NET (expõe os indicadores tratados via REST + Swagger)
 | Pasta | Conteúdo |
 |---|---|
 | [`etl/`](./etl) | Scripts Python que extraem os indicadores da API do Banco Central e carregam no banco |
-| [`api/`](./api) | Web API em ASP.NET que expõe os dados via REST + Swagger |
+| [`api/`](./api) | Backend/API | Python (FastAPI), documentação Swagger/OpenAPI automática
 | [`dashboard/`](./dashboard) | Dashboard web (HTML/CSS/JS + Chart.js) que consome a API |
 | [`mobile/`](./mobile) | App React Native (Expo) que consome a mesma API |
 | [`infra/`](./infra) | Docker Compose, Dockerfiles, scripts de infraestrutura |
@@ -36,9 +36,9 @@ API em ASP.NET (expõe os indicadores tratados via REST + Swagger)
 ## Status do projeto
 
 - [x] M0 — Setup
-- [ ] M1 — Banco de dados em Docker
-- [ ] M2 — ETL (Python)
-- [ ] M3 — API (ASP.NET)
+- [X] M1 — Banco de dados em Docker
+- [X] M2 — ETL (Python)
+- [ ] M3 — API (Python/FastAPI)
 - [ ] M4 — Dashboard Web
 - [ ] M5 — App Mobile (React Native)
 - [ ] M6 — DevOps / CI-CD

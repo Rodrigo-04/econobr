@@ -1,6 +1,6 @@
 # api
 
-Web API em ASP.NET que expõe os indicadores tratados via REST, com documentação Swagger.
+Backend/API | Python (FastAPI), documentação Swagger/OpenAPI automática
 
 Status: **M3 — a implementar.**
 
@@ -10,6 +10,6 @@ Status: **M3 — a implementar.**
 - `GET /cambio` — histórico e último valor do câmbio USD/BRL
 
 ## Planejado
-- Projeto ASP.NET Web API (.NET)
+- Projeto Python/FastAPI
 - Conexão com o SQL Server (do `infra/`)
 - Swagger/OpenAPI habilitado
