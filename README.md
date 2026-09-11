@@ -38,16 +38,47 @@ API em ASP.NET (expõe os indicadores tratados via REST + Swagger)
 - [x] M0 — Setup
 - [X] M1 — Banco de dados em Docker
 - [X] M2 — ETL (Python)
-- [ ] M3 — API (Python/FastAPI)
+- [X] M3 — API (Python/FastAPI)
 - [ ] M4 — Dashboard Web
 - [ ] M5 — App Mobile (React Native)
 - [ ] M6 — DevOps / CI-CD
 - [ ] M7 — Documentação e integração com o portfólio
 
-## Como rodar (preencher conforme os milestones avançam)
+## Como rodar
 
-Pré-requisitos: Docker, .NET SDK, Python 3.11+, Node 18+.
+Pré-requisitos: Docker Desktop, Python 3.11+ (com venv em `etl/`), .NET SDK removido do
+escopo — API será em Python/FastAPI (ver M3). Node 18+ será necessário a partir do M4.
+
+### Iniciar o ambiente
+
+1. Abra o **Docker Desktop** e espere o ícone da baleia ficar estável.
+2. Suba o banco de dados:
+```bash
+   cd infra
+   docker compose up -d
+```
+3. Confirme que subiu: `docker ps` deve mostrar `econobr-sqlserver` com status `Up`.
+
+### Rodar o ETL (atualizar os dados no banco)
 
 ```bash
-# em breve: instruções de setup completo (M1 em diante)
+cd etl
+.\venv\Scripts\Activate.ps1    # Windows PowerShell
+# ou: source venv/Scripts/activate    # Git Bash
+python main.py
 ```
+
+Isso busca os dados mais recentes de SELIC, IPCA e câmbio na API do Banco Central e
+grava/atualiza no banco (é seguro rodar quantas vezes quiser — não duplica dados).
+
+### Encerrar o ambiente
+
+```bash
+deactivate          # sai do venv, se estiver ativo
+cd infra
+docker compose stop  # pausa o container (mantém os dados)
+```
+
+Use `docker compose down` em vez de `stop` se quiser remover o container por completo
+(os dados continuam salvos no volume). Só use `docker compose down -v` se quiser apagar
+os dados de verdade — isso **não é reversível**.

@@ -20,7 +20,7 @@ Status: **M2 — a implementar.**
 
 
 ## Ambiente
-Vamos usar um ambiente virtual (venv)
+Vamos usar um ambiente virtual (venv) dentro da pasta etl (navegue até ela pelo terminal)
 Criar pasta venv:
 ```python -m venv venv```
 Iniciar venv:
