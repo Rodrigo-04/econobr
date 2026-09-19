@@ -5,6 +5,7 @@ API que expõe os indicadores econômicos (SELIC, IPCA, câmbio) via REST.
 
 from fastapi import FastAPI, Depends
 import pyodbc
+from fastapi.middleware.cors import CORSMiddleware
 
 from database import obter_conexao_dependencia
 
@@ -12,6 +13,15 @@ app = FastAPI(
     title="econobr API",
     description="Indicadores econômicos brasileiros: SELIC, IPCA e câmbio USD/BRL.",
     version="1.0.0",
+)
+
+# Libera o dashboard (rodando em outra porta/origem) a consumir esta API.
+# Em produção, restringir allow_origins ao domínio real do dashboard publicado.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET"],
+    allow_headers=["*"],
 )
 
 def buscar_indicador(nome_tabela: str, conexao: pyodbc.Connection) -> list[dict]:

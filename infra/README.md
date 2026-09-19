@@ -4,6 +4,12 @@ Infraestrutura do projeto: Docker Compose, Dockerfiles e scripts.
 
 Status: **M1 (banco) e M6 (CI/CD) — a implementar.**
 
+## Planejado
+- `docker-compose.yml` — SQL Server (M1), depois unificado com a API (M6)
+- `schema.sql` — schema inicial: tabelas de SELIC, IPCA, câmbio
+- `Dockerfile` (api) — imagem da Web API
+- `.github/workflows/` (na raiz do repo) — pipeline de build, testes e deploy
+
 ## Iniciando o container
 **Rode no terminal da pasta /infra:**
 Criar container e conectar volume:
@@ -28,8 +34,4 @@ Para listar o contúdo utilizamos:
 Para listar a contagem das linhas de uma tabela:
 ```docker exec -it econobr-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ".env:SA_PASSWORD" -C -Q "USE econobr; SELECT COUNT(*) AS total FROM cambio;"```
 
-## Planejado
-- `docker-compose.yml` — SQL Server (M1), depois unificado com a API (M6)
-- `schema.sql` — schema inicial: tabelas de SELIC, IPCA, câmbio
-- `Dockerfile` (api) — imagem da Web API
-- `.github/workflows/` (na raiz do repo) — pipeline de build, testes e deploy
+

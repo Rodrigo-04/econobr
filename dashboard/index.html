@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>econobr — Indicadores Econômicos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topo">
+    <h1>econobr</h1>
+    <p class="atualizado" id="texto-atualizado">Carregando...</p>
+  </header>
+
+  <main>
+    <section class="painel-resumo">
+      <article class="cartao cartao--selic" id="cartao-selic">
+        <h2>SELIC</h2>
+        <p class="valor" id="valor-selic">—</p>
+        <p class="legenda">Meta definida pelo Copom</p>
+      </article>
+
+      <article class="cartao cartao--ipca" id="cartao-ipca">
+        <h2>IPCA</h2>
+        <p class="valor" id="valor-ipca">—</p>
+        <p class="legenda">Variação mensal</p>
+      </article>
+
+      <article class="cartao cartao--cambio" id="cartao-cambio">
+        <h2>Câmbio USD/BRL</h2>
+        <p class="valor" id="valor-cambio">—</p>
+        <p class="legenda">Venda, fechamento diário</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
