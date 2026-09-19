@@ -9,3 +9,10 @@ Status: **M4 — a implementar.**
 - HTML/CSS/JS puro (mesma linha visual do portfólio: paleta laranja, JetBrains Mono)
 - Chart.js para os gráficos de SELIC, IPCA e câmbio
 - Responsivo
+
+
+## Testando ambiente
+No terminal, dentro da pasta de dashboard, precisamos rodar:
+```python -m http.server 5500```
+E depois acessar o navegador:
+```http://localhost:5500```
