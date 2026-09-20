@@ -1,5 +1,11 @@
 const URL_API = "http://localhost:8000";
 
+const CORES = {
+  selic: "#C9A227",
+  ipca: "#3F8F6F",
+  cambio: "#C1554B",
+};
+
 /**
  * Formata um número decimal como percentual brasileiro (ex: 14.0 -> "14,00%")
  */
@@ -46,6 +52,85 @@ async function carregarUltimoValor(nomeIndicador, idElemento, formatador) {
 }
 
 /**
+ * Função: Busca o histórico completo de um indicador e desenha um gráfico de linha.
+ */
+async function carregarGrafico(nomeIndicador, idCanvas, formatador) {
+  try {
+    const resposta = await fetch(`${URL_API}/${nomeIndicador}`);
+ 
+    if (!resposta.ok) {
+      throw new Error(`API respondeu com status ${resposta.status}`);
+    }
+ 
+    const dados = await resposta.json();
+    const dadosOrdenados = [...dados].reverse();
+ 
+    const rotulos = dadosOrdenados.map((d) => formatarData(d.data));
+    const valores = dadosOrdenados.map((d) => d.valor);
+    const cor = CORES[nomeIndicador];
+ 
+    const ctx = document.getElementById(idCanvas);
+ 
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: rotulos,
+        datasets: [
+          {
+            data: valores,
+            borderColor: cor,
+            backgroundColor: cor + "22",
+            borderWidth: 2,
+            pointRadius: 0,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: cor,
+            pointHoverBorderColor: "#0F1B2D",
+            pointHoverBorderWidth: 2,
+            tension: 0.2,
+            fill: true,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: "index",
+          intersect: false,
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: "#16273D",
+            borderColor: cor,
+            borderWidth: 1,
+            titleColor: "#EDEAE3",
+            bodyColor: "#EDEAE3",
+            padding: 10,
+            displayColors: false,
+            callbacks: {
+              label: (contexto) => formatador(contexto.parsed.y),
+            },
+          },
+        },
+        scales: {
+          x: {
+            ticks: { color: "#9FB0C3", maxTicksLimit: 8, maxRotation: 0 },
+            grid: { color: "#24395640" },
+          },
+          y: {
+            ticks: { color: "#9FB0C3" },
+            grid: { color: "#24395640" },
+          },
+        },
+      },
+    });
+  } catch (erro) {
+    console.error(`Erro ao carregar gráfico de ${nomeIndicador}:`, erro);
+  }
+}
+
+/**
  * Função principal: dispara a busca dos três indicadores e atualiza o cabeçalho.
  */
 async function iniciarDashboard() {
@@ -53,6 +138,9 @@ async function iniciarDashboard() {
     carregarUltimoValor("selic", "valor-selic", formatarPercentual),
     carregarUltimoValor("ipca", "valor-ipca", formatarPercentual),
     carregarUltimoValor("cambio", "valor-cambio", formatarMoeda),
+    carregarGrafico("selic", "grafico-selic", formatarPercentual),
+    carregarGrafico("ipca", "grafico-ipca", formatarPercentual),
+    carregarGrafico("cambio", "grafico-cambio", formatarMoeda),
   ]);
 
   const textoAtualizado = document.getElementById("texto-atualizado");

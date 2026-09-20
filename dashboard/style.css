@@ -102,3 +102,35 @@ body {
   font-size: 0.85rem;
   color: var(--cor-texto-suave);
 }
+
+/* Painel de gráficos */
+.painel-graficos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.grafico-card {
+  position: relative;
+  background-color: var(--cor-painel);
+  border-top: 3px solid transparent;
+  padding: 1.5rem;
+}
+
+.grafico-card--selic { border-top-color: var(--cor-selic); }
+.grafico-card--ipca { border-top-color: var(--cor-ipca); }
+.grafico-card--cambio { border-top-color: var(--cor-cambio); }
+
+.grafico-card h2 {
+  font-family: var(--fonte-corpo);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--cor-texto-suave);
+  margin-bottom: 1rem;
+}
+
+.grafico-card canvas {
+  max-height: none;
+  height: 280px !important;
+  width: 100% !important;
+}

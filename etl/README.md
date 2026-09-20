@@ -48,6 +48,8 @@ Quando finaziamos a criação do load.py e do main.py
     load: abre conexão com o SQL Server
     main: faz o ETL de fato executando os arquivos extract, transform e load
 Precisamos ativar o container Docker, como temos anotado no README da pasta infra, assim o banco de dados fica ativo.
+Iniciar venv:
+```.\venv\Scripts\Activate.ps1```
 E então rodamos:
 ```python main.py```
-Para executar o processo de ETL
+Para executar o processo de ETL, quando queremos atualizar os dados fazemos o mesmo.

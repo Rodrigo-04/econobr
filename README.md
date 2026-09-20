@@ -71,6 +71,25 @@ python main.py
 Isso busca os dados mais recentes de SELIC, IPCA e câmbio na API do Banco Central e
 grava/atualiza no banco (é seguro rodar quantas vezes quiser — não duplica dados).
 
+
+### Iniciar a API
+```bash
+cd api
+.\venv\Scripts\Activate.ps1    # Windows PowerShell
+# ou: source venv/Scripts/activate    # Git Bash
+python uvicorn main:app --reload 
+```
+
+### Iniciar o Dashboard
+```bash
+cd dashboard
+python -m http.server 5500
+```
+E abre no navegador (o gráfico não será exibido em alguns navegadores)
+```
+http://localhost:5500/
+```
+
 ### Encerrar o ambiente
 
 ```bash
