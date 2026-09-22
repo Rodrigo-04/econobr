@@ -1,7 +1,7 @@
 # econobr
 
 Ecossistema de indicadores econômicos brasileiros (SELIC, IPCA, câmbio USD/BRL), construído como projeto de portfólio full stack: dados → API → consumo (web e mobile) → automação.
-Uso de IApara acelerar o desenvolvimento.
+Uso de IA para acelerar o desenvolvimento.
 
 ## Arquitetura
 
@@ -39,10 +39,11 @@ API em ASP.NET (expõe os indicadores tratados via REST + Swagger)
 - [X] M1 — Banco de dados em Docker
 - [X] M2 — ETL (Python)
 - [X] M3 — API (Python/FastAPI)
-- [ ] M4 — Dashboard Web
+- [X] M4 — Dashboard Web
 - [ ] M5 — App Mobile (React Native)
 - [ ] M6 — DevOps / CI-CD
-- [ ] M7 — Documentação e integração com o portfólio
+- [ ] M7 - Power BI
+- [ ] M8   — Documentação e integração com o portfólio
 
 ## Como rodar
 
