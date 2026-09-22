@@ -40,7 +40,7 @@ API em ASP.NET (expõe os indicadores tratados via REST + Swagger)
 - [X] M2 — ETL (Python)
 - [X] M3 — API (Python/FastAPI)
 - [X] M4 — Dashboard Web
-- [ ] M5 — App Mobile (React Native)
+- [X] M5 — App Mobile (React Native)
 - [ ] M6 — DevOps / CI-CD
 - [ ] M7 - Power BI
 - [ ] M8   — Documentação e integração com o portfólio

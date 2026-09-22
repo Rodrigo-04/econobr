@@ -26,6 +26,11 @@ Para testar a conexão podemos abrir no navegador do celular a API:
 http://SEU_IP:8000/selic/ultimo
 ```
 
+Precisamos das bibliotecas de gráfico, para instalar:
+```bash
+npm install react-native-chart-kit react-native-svg
+```
+
 ## executando
 Executa o App, podemos escanear o QR Code no App Expo Go e simular no prórpio aparelho, ou no localhost.
 ```bash
