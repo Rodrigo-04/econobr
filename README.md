@@ -91,6 +91,13 @@ E abre no navegador (o gráfico não será exibido em alguns navegadores)
 http://localhost:5500/
 ```
 
+### Iniciar o App
+Utilizando o App Expo Go:
+```bash
+cd mobile
+npx expo start
+```
+
 ### Encerrar o ambiente
 
 ```bash

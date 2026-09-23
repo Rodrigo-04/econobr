@@ -34,4 +34,9 @@ Para listar o contúdo utilizamos:
 Para listar a contagem das linhas de uma tabela:
 ```docker exec -it econobr-sqlserver /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P ".env:SA_PASSWORD" -C -Q "USE econobr; SELECT COUNT(*) AS total FROM cambio;"```
 
-
+## M6 - DevOps / CI-CD
+Agora reconstruimos a imagem a partir do Dockerfile
+```docker compose up -d --build```
+E quando utilizamos a imagem, já vamos ter o econobr-api e o econobr-sqlserver rodando.
+Para parar continuamos usando:
+````docker compose down```

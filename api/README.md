@@ -47,3 +47,13 @@ Para o IPCA:
 ```http://localhost:8000/ipca/ultimo```
 Para o CÂMBIO:
 ```http://localhost:8000/cambio/ultimo```
+
+## M6 - DevOps / CI-CD
+Criação do Dockerfile
+E geração da imagem, nomeada como econobr-api
+```bash
+cd api
+docker build -t econobr-api .
+```
+Para verificar se a imagem foi gerada usamos:
+```docker images```
