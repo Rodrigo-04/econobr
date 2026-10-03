@@ -23,6 +23,14 @@ jobs:
       - name: Instalar dependências do ETL
         run: pip install -r etl/requirements.txt
 
+      - name: Testar conexão com Banco Central
+              run: |
+                echo "Testando DNS..."
+                nslookup api.bcb.gov.br || true
+
+                echo "Testando conexão HTTPS..."
+                curl -I --max-time 30 https://api.bcb.gov.br || true
+
       - name: Rodar o ETL
         working-directory: etl
         env:
