@@ -46,7 +46,7 @@ def buscar_serie(nome_serie: str, data_inicial: date, data_final: date) -> list[
         "dataFinal": data_final.strftime("%d/%m/%Y"),
     }
 
-    ultimo_erro = none
+    ultimo_erro = None
 
     for tentativa in range(1, MAX_TENTATIVA + 1):
         try:
