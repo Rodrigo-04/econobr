@@ -24,7 +24,7 @@ jobs:
         run: pip install -r etl/requirements.txt
 
       - name: Testar conexão com Banco Central
-              run: |
+        run: |
                 echo "Testando DNS..."
                 nslookup api.bcb.gov.br || true
 
