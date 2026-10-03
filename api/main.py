@@ -28,6 +28,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/healthz")
+def health_check():
+    """
+    Endpoint simples para o Render (ou qualquer monitor) checar se o
+    processo está no ar — não consulta o banco de propósito, para não
+    reportar "fora do ar" só porque o banco está lento, por exemplo.
+    """
+    return {"status": "ok"}
 
 def buscar_indicador(nome_tabela: str, conexao) -> list[dict]:
     """
@@ -46,7 +54,7 @@ def buscar_ultimo_valor(nome_tabela: str, conexao) -> dict | None:
     Busca apenas o registro mais recente de uma tabela.
     """
     cursor = conexao.cursor()
-
+  
     if DB_ENGINE == "postgres":
         cursor.execute(f"SELECT data, valor FROM {nome_tabela} ORDER BY data DESC LIMIT 1")
     else:

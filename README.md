@@ -41,9 +41,9 @@ API em ASP.NET (expõe os indicadores tratados via REST + Swagger)
 - [X] M3 — API (Python/FastAPI)
 - [X] M4 — Dashboard Web
 - [X] M5 — App Mobile (React Native)
-- [ ] M6 — DevOps / CI-CD
-- [ ] M7 - Power BI
-- [ ] M8   — Documentação e integração com o portfólio
+- [X] M6 — DevOps / CI-CD
+- [ ] M7   — Documentação e integração com o portfólio
+- [ ] Extra - Power BI
 
 ## Como rodar
 

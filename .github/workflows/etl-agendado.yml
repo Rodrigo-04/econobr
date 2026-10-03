@@ -1,0 +1,35 @@
+name: ETL agendado
+
+on:
+  schedule:
+    # Todo dia às 09:00 UTC (06:00 horário de Brasília)
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+    # Permite rodar manualmente pela aba "Actions" do GitHub, a qualquer hora
+
+jobs:
+  rodar-etl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o código do repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências do ETL
+        run: pip install -r etl/requirements.txt
+
+      - name: Rodar o ETL
+        working-directory: etl
+        env:
+          DB_ENGINE: postgres
+          PG_HOST: ${{ secrets.PG_HOST }}
+          PG_PORT: ${{ secrets.PG_PORT }}
+          PG_DB: ${{ secrets.PG_DB }}
+          PG_USER: ${{ secrets.PG_USER }}
+          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+        run: python main.py

@@ -7,7 +7,6 @@ SQL Server local OU Postgres/Supabase, dependendo de DB_ENGINE
 """
 
 import os
-import pyodbc
 import psycopg
 import pandas as pd
 from dotenv import load_dotenv
@@ -31,6 +30,12 @@ def obter_conexao():
         )
  
     # Padrão: SQL Server local
+    # Import feito aqui dentro (não no topo doarquivo) 
+    # porque pyodbc exige o driver ODBC do sistema operacional
+    # instalado — ambientes que só usam Postgres (Render, GitHub Actions)
+    # não precisam ter isso, e não devem quebrar por causa disso.
+    import pyodbc
+
     servidor = os.getenv("DB_SERVER")
     banco = os.getenv("DB_NAME")
     usuario = os.getenv("DB_USER")

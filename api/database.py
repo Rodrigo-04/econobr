@@ -6,7 +6,6 @@ dependendo de DB_ENGINE).
 """
 
 import os
-import pyodbc
 import psycopg
 from dotenv import load_dotenv
 
@@ -29,6 +28,8 @@ def obter_conexao():
             sslmode="require",
         )
 
+    import pyodbc
+    
     servidor = os.getenv("DB_SERVER")
     banco = os.getenv("DB_NAME")
     usuario = os.getenv("DB_USER")
