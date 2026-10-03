@@ -1,54 +1,37 @@
 name: ETL agendado
 
-on:
-  schedule:
-    # Todo dia às 09:00 UTC (06:00 horário de Brasília)
-    - cron: "0 9 * * *"
-  workflow_dispatch:
-    # Permite rodar manualmente pela aba "Actions" do GitHub, a qualquer hora
+#JOB desativado pois o GITHUB Actions não consegue se conectar ao NS necessário para realiar a extração dos dados
 
-jobs:
-  rodar-etl:
-    runs-on: ubuntu-latest
+# on:
+#   schedule:
+#     # Todo dia às 09:00 UTC (06:00 horário de Brasília)
+#     - cron: "0 9 * * *"
+#   workflow_dispatch:
+#     # Permite rodar manualmente pela aba "Actions" do GitHub, a qualquer hora
 
-    steps:
-      - name: Baixar o código do repositório
-        uses: actions/checkout@v4
+# jobs:
+#   rodar-etl:
+#     runs-on: ubuntu-latest
 
-      - name: Instalar Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+#     steps:
+#       - name: Baixar o código do repositório
+#         uses: actions/checkout@v4
 
-      - name: Instalar dependências do ETL
-        run: pip install -r etl/requirements.txt
+#       - name: Instalar Python
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: "3.12"
 
-      - name: Diagnóstico DNS
-        run: |
-          echo "=== api.bcb.gov.br ==="
-          getent ahostsv4 api.bcb.gov.br || true
+#       - name: Instalar dependências do ETL
+#         run: pip install -r etl/requirements.txt
 
-          echo ""
-          echo "=== www3.bcb.gov.br ==="
-          getent ahostsv4 www3.bcb.gov.br || true
-
-          echo ""
-          echo "=== DNSSEC / autoridade ==="
-          dig api.bcb.gov.br
-          dig api.bcb.gov.br @8.8.8.8
-          dig api.bcb.gov.br @1.1.1.1
-
-          echo ""
-          echo "=== SGS ==="
-          curl -I -L --max-time 30 https://www3.bcb.gov.br/sgspub/
-
-      - name: Rodar o ETL
-        working-directory: etl
-        env:
-          DB_ENGINE: postgres
-          PG_HOST: ${{ secrets.PG_HOST }}
-          PG_PORT: ${{ secrets.PG_PORT }}
-          PG_DB: ${{ secrets.PG_DB }}
-          PG_USER: ${{ secrets.PG_USER }}
-          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
-        run: python main.py
+#       - name: Rodar o ETL
+#         working-directory: etl
+#         env:
+#           DB_ENGINE: postgres
+#           PG_HOST: ${{ secrets.PG_HOST }}
+#           PG_PORT: ${{ secrets.PG_PORT }}
+#           PG_DB: ${{ secrets.PG_DB }}
+#           PG_USER: ${{ secrets.PG_USER }}
+#           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+#         run: python main.py
