@@ -4,6 +4,7 @@ extract.py
 Responsável por buscar dados de séries temporais na API do Banco Central (SGS).
 """
 
+import time
 import requests
 from datetime import date, timedelta
 
@@ -16,10 +17,14 @@ SERIES = {
 
 BASE_URL = "https://api.bcb.gov.br/dados/serie/bcdata.sgs.{codigo}/dados"
 
+MAX_TENTATIVA = 3
+ESPERA_TENTATIVA = 5
 
 def buscar_serie(nome_serie: str, data_inicial: date, data_final: date) -> list[dict]:
     """
     Busca uma série temporal do Banco Central entre duas datas.
+    Tenta novamente em caso de falha de rede temporária (ex: instabilidade
+    passageira de DNS), antes de desistir de verdade.
 
     Args:
         nome_serie: chave em SERIES (ex: "selic", "ipca", "cambio")
@@ -41,17 +46,34 @@ def buscar_serie(nome_serie: str, data_inicial: date, data_final: date) -> list[
         "dataFinal": data_final.strftime("%d/%m/%Y"),
     }
 
-    resposta = requests.get(url, params=params, timeout=30)
+    ultimo_erro = none
 
-    # A API do BCB responde 404 quando não há nenhum dado no período pedido
-    # (comum em séries mensais/anuais consultadas numa janela curta). Isso
-    # não é um erro real, é o jeito da API dizer "sem resultados aqui".
-    if resposta.status_code == 404:
-        return []
+    for tentativa in range(1, MAX_TENTATIVA + 1):
+        try:
+            resposta = requests.get(url, params=params, timeout=30)
 
-    resposta.raise_for_status()  # lança erro se o status não for 200 OK (outros casos)
+            # A API do BCB responde 404 quando não há nenhum dado no período pedido
+            # (comum em séries mensais/anuais consultadas numa janela curta). Isso
+            # não é um erro real, é o jeito da API dizer "sem resultados aqui".
+            if resposta.status_code == 404:
+                return []
 
-    return resposta.json()
+            resposta.raise_for_status()  # lança erro se o status não for 200 OK (outros casos)
+            return resposta.json()
+
+        except requests.exceptions.ConnectionError as erro:
+            # Falha de rede (ex: DNS instável, timeout de conexão) — tenta de novo
+            ultimo_erro = erro
+            if tentativa < MAX_TENTATIVA:
+                print(
+                    f"Falha de rede ao buscar {nome_serie} (tentativa {tentativa}/"
+                    f"{MAX_TENTATIVA}). Tentando novamente em "
+                    f"{ESPERA_TENTATIVA}s..."
+                )
+                time.sleep(ESPERA_TENTATIVA)
+ 
+    # Esgotou as tentativas — agora sim, desiste e propaga o erro
+    raise ultimo_erro
 
 #reativar para rodar o arquivo como teste no terminal
 """
