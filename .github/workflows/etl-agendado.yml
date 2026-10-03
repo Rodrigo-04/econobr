@@ -23,30 +23,24 @@ jobs:
       - name: Instalar dependências do ETL
         run: pip install -r etl/requirements.txt
 
-      - name: Diagnóstico de conexão BCB
+      - name: Diagnóstico DNS
         run: |
-          echo "=== DNS ==="
-          getent hosts api.bcb.gov.br || true
+          echo "=== api.bcb.gov.br ==="
+          getent ahostsv4 api.bcb.gov.br || true
 
           echo ""
-          echo "=== DNS Google ==="
-          nslookup api.bcb.gov.br 8.8.8.8 || true
+          echo "=== www3.bcb.gov.br ==="
+          getent ahostsv4 www3.bcb.gov.br || true
 
           echo ""
-          echo "=== DNS Cloudflare ==="
-          nslookup api.bcb.gov.br 1.1.1.1 || true
+          echo "=== DNSSEC / autoridade ==="
+          dig api.bcb.gov.br
+          dig api.bcb.gov.br @8.8.8.8
+          dig api.bcb.gov.br @1.1.1.1
 
           echo ""
-          echo "=== BCB API ==="
-          curl -v --max-time 30 \
-            "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01/09/2026&dataFinal=03/10/2026" \
-            || true
-
-          echo ""
-          echo "=== BCB SGS ==="
-          curl -I --max-time 30 \
-            "https://www3.bcb.gov.br/sgspub/" \
-            || true
+          echo "=== SGS ==="
+          curl -I -L --max-time 30 https://www3.bcb.gov.br/sgspub/
 
       - name: Rodar o ETL
         working-directory: etl
