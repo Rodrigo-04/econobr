@@ -165,3 +165,6 @@ Use `docker compose down` em vez de `stop` se quiser remover o container por com
 (os dados continuam salvos no volume). Só use `docker compose down -v` se quiser apagar
 os dados de verdade (**não é reversível**).
 
+## Licença
+ 
+Este projeto está sob a licença MIT — veja [LICENSE](./LICENSE).
