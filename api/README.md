@@ -1,34 +1,68 @@
 # api
 
-Backend/API | Python (FastAPI), documentação Swagger/OpenAPI automática
+[← voltar ao README principal](../README.md)
 
-Status: **M3 — a implementar.**
+API em FastAPI que expõe os indicadores econômicos tratados via REST, com documentação Swagger/OpenAPI gerada automaticamente (Publicada no Render).
 
-## Endpoints planejados
-- `GET /selic` — histórico e último valor da SELIC
-- `GET /ipca` — histórico e último valor do IPCA
-- `GET /cambio` — histórico e último valor do câmbio USD/BRL
+## Endpoints
+ 
+| Rota | Descrição |
+|---|---|
+| `GET /healthz` | Verificação de disponibilidade (não consulta o banco) |
+| `GET /selic` | Histórico completo da SELIC |
+| `GET /selic/ultimo` | Valor mais recente da SELIC |
+| `GET /ipca` | Histórico completo do IPCA |
+| `GET /ipca/ultimo` | Valor mais recente do IPCA |
+| `GET /cambio` | Histórico completo do câmbio USD/BRL |
+| `GET /cambio/ultimo` | Valor mais recente do câmbio USD/BRL |
 
-## Planejado
-- Projeto Python/FastAPI
-- Conexão com o SQL Server (do `infra/`)
-- Swagger/OpenAPI habilitado
+>Documentação interativa (Swagger) disponível em `https://econobr.onrender.com/docs`
+ 
+## Arquivos
+
+| Arquivo | Responsabilidade |
+|---|---|
+| `main.py` | Define as rotas e a lógica de cada endpoint |
+| `database.py` | Gerencia a conexão com o banco (SQL Server ou Postgres, conforme `DB_ENGINE`) |
+| `Dockerfile` | Empacota a API para rodar em container (usado também no deploy no Render) |
 
 ## Ambiente
-Vamos usar um ambiente virtual (venv) dentro da pasta api (navegue até ela pelo terminal)
-Criar pasta venv:
-```python -m venv venv```
+Vamos usar um ambiente virtual (venv) dentro da pasta api
+```bash
+cd api
+```
+Criar o ambiente venv:
+```bash
+python -m venv venv
+```
 Iniciar venv:
-```.\venv\Scripts\Activate.ps1```
+```bash
+.\venv\Scripts\Activate.ps1
+```
 Instalar requisitos:
-```pip install -r requirements.txt```
-    Obs: Sempre que atualizarmos os requisitos precisamos rodar essa instalação no ambiente virtual
+```bash
+pip install -r requirements.txt
+```
+> Obs: Sempre que atualizarmos os requisitos precisamos rodar essa instalação no ambiente virtual
+
+Copie `.env.example` para `.env` e preencha as credenciais do banco.
+
+Inicia a API
+```bash
+uvicorn main:app --reload
+```
+
 Desativar ambiente virtual:
-```deactivate```
+Ctrl + C
+```bash
+deactivate
+```
 
 ## Teste
 Com o venv ativo rode:
-```uvicorn main:app --reload```
+```bash
+uvicorn main:app --reload
+```
 O --reload faz o servidor reiniciar, importante quando estamos desenvolvendo o código
 Para encerrar o Uvicorn (programa que coloca a API no ar) basta usar Ctrl + C
 
@@ -48,7 +82,6 @@ Para o IPCA:
 Para o CÂMBIO:
 ```http://localhost:8000/cambio/ultimo```
 
-## M6 - DevOps / CI-CD
 Criação do Dockerfile
 E geração da imagem, nomeada como econobr-api
 ```bash
@@ -56,4 +89,11 @@ cd api
 docker build -t econobr-api .
 ```
 Para verificar se a imagem foi gerada usamos:
-```docker images```
+```bash
+docker images
+```
+
+## Deploy
+ 
+Publicada no [Render](https://render.com) a partir do `Dockerfile` desta pasta, com build e deploy automáticos a cada push na branch `main`.
+Variáveis de ambiente configuradas diretamente no painel do Render (nunca commitadas no repositório).

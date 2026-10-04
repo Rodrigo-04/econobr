@@ -1,0 +1,72 @@
+<svg viewBox="0 0 900 760" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="seta" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#C9A227" />
+    </marker>
+    <marker id="seta-suave" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9FB0C3" />
+    </marker>
+  </defs>
+
+  <rect width="900" height="760" fill="#0F1B2D" />
+
+  <text x="450" y="40" text-anchor="middle" fill="#EDEAE3" font-size="22" font-weight="600">econobr — Arquitetura</text>
+
+  <!-- API Banco Central -->
+  <rect x="330" y="70" width="240" height="60" rx="4" fill="#16273D" stroke="#C9A227" stroke-width="2" />
+  <text x="450" y="95" text-anchor="middle" fill="#EDEAE3" font-size="14" font-weight="600">API Banco Central</text>
+  <text x="450" y="114" text-anchor="middle" fill="#9FB0C3" font-size="11">SGS — SELIC, IPCA, câmbio</text>
+
+  <line x1="450" y1="130" x2="450" y2="168" stroke="#C9A227" stroke-width="2" marker-end="url(#seta)" />
+
+  <!-- ETL -->
+  <rect x="330" y="170" width="240" height="60" rx="4" fill="#16273D" stroke="#3F8F6F" stroke-width="2" />
+  <text x="450" y="195" text-anchor="middle" fill="#EDEAE3" font-size="14" font-weight="600">ETL (Python)</text>
+  <text x="450" y="214" text-anchor="middle" fill="#9FB0C3" font-size="11">extrai → transforma → carrega</text>
+
+  <line x1="450" y1="230" x2="450" y2="268" stroke="#C9A227" stroke-width="2" marker-end="url(#seta)" />
+
+  <!-- GitHub Actions (lateral, automação) -->
+  <rect x="650" y="170" width="190" height="60" rx="4" fill="#16273D" stroke="#9FB0C3" stroke-width="1.5" stroke-dasharray="4,3" />
+  <text x="745" y="193" text-anchor="middle" fill="#EDEAE3" font-size="12" font-weight="600">GitHub Actions</text>
+  <text x="745" y="209" text-anchor="middle" fill="#9FB0C3" font-size="10">ETL agendado</text>
+  <text x="745" y="222" text-anchor="middle" fill="#9FB0C3" font-size="9">(desativo)</text>
+  <line x1="650" y1="200" x2="572" y2="200" stroke="#9FB0C3" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#seta-suave)" />
+
+  <!-- Banco de dados -->
+  <rect x="330" y="270" width="240" height="60" rx="4" fill="#16273D" stroke="#3F8F6F" stroke-width="2" />
+  <text x="450" y="295" text-anchor="middle" fill="#EDEAE3" font-size="14" font-weight="600">Postgres (Supabase)</text>
+  <text x="450" y="314" text-anchor="middle" fill="#9FB0C3" font-size="11">tabelas: selic, ipca, cambio</text>
+
+  <line x1="450" y1="330" x2="450" y2="368" stroke="#C9A227" stroke-width="2" marker-end="url(#seta)" />
+
+  <!-- API REST -->
+  <rect x="330" y="370" width="240" height="60" rx="4" fill="#16273D" stroke="#C1554B" stroke-width="2" />
+  <text x="450" y="395" text-anchor="middle" fill="#EDEAE3" font-size="14" font-weight="600">API REST (FastAPI)</text>
+  <text x="450" y="414" text-anchor="middle" fill="#9FB0C3" font-size="11">Render · /docs (Swagger)</text>
+
+  <!-- Divisão para dashboard e mobile -->
+  <line x1="450" y1="430" x2="450" y2="460" stroke="#C9A227" stroke-width="2" />
+  <line x1="260" y1="460" x2="640" y2="460" stroke="#C9A227" stroke-width="2" />
+  <line x1="260" y1="460" x2="260" y2="498" stroke="#C9A227" stroke-width="2" marker-end="url(#seta)" />
+  <line x1="640" y1="460" x2="640" y2="498" stroke="#C9A227" stroke-width="2" marker-end="url(#seta)" />
+
+  <!-- Dashboard -->
+  <rect x="140" y="500" width="240" height="60" rx="4" fill="#16273D" stroke="#C9A227" stroke-width="2" />
+  <text x="260" y="525" text-anchor="middle" fill="#EDEAE3" font-size="14" font-weight="600">Dashboard Web</text>
+  <text x="260" y="544" text-anchor="middle" fill="#9FB0C3" font-size="11">HTML/CSS/JS + Chart.js · Vercel</text>
+
+  <!-- Mobile -->
+  <rect x="520" y="500" width="240" height="60" rx="4" fill="#16273D" stroke="#C9A227" stroke-width="2" />
+  <text x="640" y="525" text-anchor="middle" fill="#EDEAE3" font-size="14" font-weight="600">App Mobile</text>
+  <text x="640" y="544" text-anchor="middle" fill="#9FB0C3" font-size="11">React Native (Expo) · Expo Go</text>
+
+  <!-- Legenda -->
+  <rect x="140" y="620" width="620" height="110" rx="4" fill="#16273D" stroke="#24395640" stroke-width="1" />
+  <text x="160" y="645" fill="#EDEAE3" font-size="12" font-weight="600">Legenda</text>
+  <line x1="160" y1="662" x2="190" y2="662" stroke="#C9A227" stroke-width="2" marker-end="url(#seta)" />
+  <text x="198" y="666" fill="#9FB0C3" font-size="11">fluxo de dados ativo</text>
+  <line x1="160" y1="684" x2="190" y2="684" stroke="#9FB0C3" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#seta-suave)" />
+  <text x="198" y="688" fill="#9FB0C3" font-size="11">automação prevista (desativada no momento, ver etl/README)</text>
+  <text x="160" y="712" fill="#9FB0C3" font-size="10">Ambiente local de desenvolvimento usa SQL Server + Docker em vez de Supabase, ver README principal.</text>
+</svg>
