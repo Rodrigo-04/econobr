@@ -1,4 +1,4 @@
-const URL_API = "http://localhost:8000";
+const URL_API = "https://econobr.onrender.com";
 
 const CORES = {
   selic: "#C9A227",
