@@ -1,4 +1,4 @@
-# name: ETL agendado
+name: ETL agendado
 
 # Execução automática desabilitada.
 # O job não pode rodar, pois o BCB bloqueia requisição a API vindas por nuvem
